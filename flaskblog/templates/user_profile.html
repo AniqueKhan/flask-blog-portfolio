@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block content %}
+<div class="container" style="margin-top: 10%">
+  <h2 class="mb-3">Posts By: {{user.username}} ({{posts.total}})</h2>
+  {% for post in posts.items %}
+  <div class="card" style="background-color: #e4eef7">
+    <article class="media content-section pt-3">
+      <img
+        src="{{url_for('static',filename='profile_pics/'+post.author.image_file)}}"
+        class="rounded-circle article-img pl-2"
+      />
+      <div class="media-body">
+        <div class="article-metadata">
+          <a
+            href="{{url_for('users.user_profile',username=post.author.username)}}"
+            class="pl-3"
+            style="color: black"
+            >{{ post.author.username }}</a
+          >
+          <span style="font-size: smaller" class="pl-3">posted on</span>
+          <small class="pl-3 text-muted"
+            >{{ post.date_posted.strftime('%Y-%m-%d | %I:%M:%S %p') }}</small
+          >
+        </div>
+        <h2 class="pl-3" style="padding-top: 10px">
+          <a
+            class="article-title"
+            href="{{url_for('posts.post',post_id=post.id)}}"
+            >{{ post.title }}</a
+          >
+        </h2>
+        <p class="pl-3 pb-3 mb-3 pr-3 article-content" style="text-align: left">
+          {% if post.content|wordcount >50 %} {{ post.content|truncate(500) }}
+          <a href="{{url_for('posts.post',post_id=post.id)}}">[See More]</a>{%
+          else %}{{post.content}}{% endif %}
+        </p>
+      </div>
+    </article>
+  </div>
+  <br />
+  {% endfor %} {% for page_num in
+  posts.iter_pages(left_edge=2,right_edge=2,left_current=2,right_current=2) %}
+  {% if page_num %}{% if posts.page==page_num %}<a
+    href="{{url_for('users.user_profile',username=user.username, page=page_num)}}"
+    class="mb-4 btn btn-info"
+    >{{page_num}}</a
+  >
+  {% else %}<a
+    href="{{url_for('users.user_profile',username=user.username, page=page_num)}}"
+    class="mb-4 btn btn-outline-info"
+    >{{page_num}}</a
+  >{% endif %} {% else %} ... {% endif %}{% endfor %}
+</div>
+{% endblock %}

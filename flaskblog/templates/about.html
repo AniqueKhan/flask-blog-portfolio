@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% block content %}
+<div
+  class="container"
+  style="margin-top: 10%; align-items: center; margin-left: 10%"
+>
+  <div class="card mb-3" style="max-width: 940px">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img
+          src="{{url_for('static',filename='img/me.jpg')}}"
+          class="img-fluid rounded-start"
+          alt="..."
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            Muhammad Anique Khan (Web Developer | Freelancer)
+          </h5>
+          <p class="card-text">
+            Hi! I am the brains behind this project. My name is Muhammad Anique
+            Khan and I have been coding for 2 years. I am a freelancer and you
+            can check my services at
+            <a href="https://www.fiverr.com/anique44" target="_blank">Fiverr</a
+            >.
+          </p>
+          <p class="card-text">
+            I have made this basic blogging application with proper
+            authentication system. Here you can post a blog , edit an existing
+            one , delete a blog post (only if you are author of it) and read
+            other people's blog posts. Proper Signup and Login functionalities
+            with password resetting function on email. Image handling and
+            storage of users (their profile pictures) and much. Play around with
+            the website to explore more features.
+          </p>
+          <p class="card-text">
+            <b> You can contact me at aniquekhan004@gmail.com</b>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
